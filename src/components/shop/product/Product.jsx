@@ -133,7 +133,7 @@ const Product = (props) => {
                         <span className="discount-rate">
                              {(discountRate || 0)}%
                         </span>
-                        <span className="price">{(price * (100 - discountRate)/100).toLocaleString()}</span>
+                        <span className="price">{Math.round(price * (100 - discountRate)/100).toLocaleString()}</span>
                     </div> :
                       <div>
                           <span className="price">{(price).toLocaleString()}원</span>

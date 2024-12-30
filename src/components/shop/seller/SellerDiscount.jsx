@@ -229,7 +229,7 @@ const SellerDiscount = (props) => {
                                 <span style={{textAlign: "right"}}>{item.price.toLocaleString()} 원 </span>
                                 <span style={{textAlign: "right"}}>{item.option_discount_rate}% </span>
                                 <span style={{textAlign: "right"}}>
-                                    {(item.price * (1-item.option_discount_rate/100)).toLocaleString()}원
+                                    {(Math.round(item.price * (1-item.option_discount_rate/100))).toLocaleString()}원
                                 </span>
                             </div>
                         )
