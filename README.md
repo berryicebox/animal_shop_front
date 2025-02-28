@@ -49,7 +49,7 @@
 | **사진**     | ![한선우](https://avatars.githubusercontent.com/u/120350053?v=4)                              | ![최소진](https://github.com/user-attachments/assets/646fbee6-a1b8-402e-9b91-93dd2c31a778)   | ![최정아](https://github.com/user-attachments/assets/20aab45b-c93b-4166-9c77-acb1288f47fe)   | ![석혁주](https://avatars.githubusercontent.com/u/140710676?v=4)   |
 | **역할**     | BackEnd(팀장)                                                                                     | FrontEnd(부팀장)                                                                                     | FrontEnd                                                                                     | BackEnd                                                                                     |
 | **GitHub**   | [한선우 GitHub](https://github.com/hamster0410)                                               | [최소진 GitHub](https://github.com/sosojean)                                                 | [최정아 GitHub](https://github.com/berryicebox)                                              | [석혁주 GitHub](https://github.com/cocoboll0)                                              |
-| **주 작업**  | 1. 팀 전체 관리 <br>2. REST API 설계<br>3. ERD 설계 <br>4. 소셜 로그인, 페이, 소켓 채팅 구현<br>5. 쇼핑몰 CRUD 구현 <br>6. 발표 | 1. 프로젝트 기획 <br>2. 백엔드 통신 설계 <br>3. 지도, 채팅 구현 <br>4. 댓글 및 대댓글 로직 구현<br>5. 판매 데이터 분석 툴 구현<br>6. React 프로젝트 관리 | 1. 팀 회의 서기 <br>2. 내 반려동물 정보 기반 계산기 구현 <br>3. 동물 백과 구현<br>4. 유기동물 검색 구현 <br>5. 장바구니 및 판매 상품 구현 | 1. 팀 일정 관리<br> 2. 오픈 API 전처리 <br>3. 쇼핑몰 CRUD 구현 <br>4. API 명세서 작성 <br>5. 코드 리팩토링 & QA <br>6. 발표 자료 작성 |
+| **주 작업**  | 1. 팀 전체 관리 <br>2. REST API 설계<br>3. ERD 설계 <br>4. 소셜 로그인, 페이, 소켓 채팅 구현<br>5. 쇼핑몰 CRUD 구현 <br>6. 발표 | 1. 프로젝트 기획 <br>2. 백엔드 통신 설계 <br>3. 지도, 채팅 구현 <br>4. 댓글 및 대댓글 로직 구현<br>5. 판매 데이터 분석 툴 구현<br>6. React 프로젝트 관리 | 1. 팀 회의 서기 <br>2. 내 반려동물 정보 기반 계산기 구현 <br>3. 동물 백과 구현<br>4. 유기동물 검색 구현 <br>5. 장바구니 및 판매자 상품관리 구현 | 1. 팀 일정 관리<br> 2. 오픈 API 전처리 <br>3. 쇼핑몰 CRUD 구현 <br>4. API 명세서 작성 <br>5. 코드 리팩토링 & QA <br>6. 발표 자료 작성 |
 <br/>
 
 
@@ -82,28 +82,28 @@ Front End (React)
 ├── App.test.js
 ├── index.css
 ├── index.jsx
-├── assets
+├── assets            // scss, 이미지, 폰트
 │   ├── fonts
 │   ├── img
 │   └── styles
-├── components
-│   ├── additional
+├── components        // 컴포넌트
+│   ├── additional    // 부가기능 (유기동물 입양, 계산기, 동물백과)
 │   │   ├── adopt
 │   │   ├── calc
 │   │   └── wiki
-│   ├── board
-│   ├── chatting
-│   ├── comment
-│   ├── common
-│   ├── layout
-│   ├── map
-│   ├── member
+│   ├── board         // 커뮤니티
+│   ├── chatting      // 채팅
+│   ├── comment       // 댓글
+│   ├── common        // 공통사용 UI요소
+│   ├── layout        // 헤더, 푸터, 라우터 등
+│   ├── map           // 지도
+│   ├── member        // 유저
 │   │   ├── myPage
 │   │   │   └── items
 │   │   ├── password
 │   │   └── pet
 │   │       └── register
-│   └── shop
+│   └── shop          // 쇼핑몰(관리자, 주문, 상품, 판매자)
 │       ├── admin
 │       │   └── notice
 │       ├── order
@@ -117,18 +117,18 @@ Front End (React)
 │           ├── itemList
 │           ├── itemRegister
 │           └── sellerQna
-├── pages
-│   ├── additional
-│   ├── board
-│   ├── chatting
-│   ├── map
-│   ├── member
-│   └── shop
+├── pages            // 페이지
+│   ├── additional   // 부가기능
+│   ├── board        // 커뮤니티
+│   ├── chatting     // 채팅
+│   ├── map          // 지도
+│   ├── member       // 유저
+│   └── shop         // 쇼핑몰
 │       ├── admin
 │       ├── order
 │       ├── product
 │       └── seller
-└── utils
+└── utils            // 전역함수, 데이터 등
 
 
 ----------------------------------------------------------------------------------------
@@ -398,17 +398,14 @@ API에 대한 자세한 내용은 아래 링크를 참고하세요:
 
 개발 과정에서 특히 공을 들였던 부분은 아래와 같습니다:
 
-1. **내 상품 구매 정보를 각 판매자에게 다르게 전달**  
-   - `HashMap`을 활용하여 각 판매자에게 적합한 구매 정보를 분리 전달하였습니다.  
-   - 이를 통해 판매자별로 정보를 커스터마이징하고 처리 속도를 최적화할 수 있었습니다.
+1. **장바구니 컴포넌트 및 결제 시스템 연동**  
+   - 카카오페이 결제 연동에서 일반 구매와 장바구니 구매 간 데이터 구조 차이로 인해 `useLocation`과 `useNavigate`를 사용해 두 결제를 구분할 수 있도록 하였습니다.
+   - 개발 초기에는 상품 상세 컴포넌트에 장바구니 로직을 함께 작성했지만 후기에 이르며 코드가 길어져 코드 가독성을 위해 장바구니 버튼을 컴포넌트로 전환 하였습니다.
+   - LocalStorage를 사용한 비로그인 회원의 장바구니 사용도 로그인 회원과 일관된 경험을 할 수 있도록 백엔드 로직과 유사하게 작동하도록 코드를 작성하였습니다.
 
-2. **장바구니 담기 로직 최적화**  
-   - 사용자가 장바구니에 물품을 담을 때, 동일한 품목의 옵션이 이미 담겨 있다면 제외하여 출력하는 로직을 구현하였습니다.  
-   - 중복 옵션을 제거함으로써 사용자 경험을 개선하고, 데이터 처리의 불필요한 중복을 방지했습니다.
-
-3. **Spring JPA의 `Specification` 활용**  
-   - Spring JPA의 `Specification` 기능을 사용하여 동적인 `WHERE` 조건절을 쉽게 생성하고 적용할 수 있었습니다.  
-   - 복잡한 쿼리 로직도 간결하고 유지보수 가능한 형태로 구현할 수 있었습니다.
+2. **유기동물 정보 검색 필터 구현**  
+   - 하나의 옵션만 선택하면 되는 일반 필터와 다르게 지역 필터는 시/도를 선택했을 때 시/군/구가 출력되도록 서브 옵션(서브 카테고리)이 필요했습니다. 일반 필터와 달리 서브 필터는 처음 구현 해 보았기에 고민이 필요했습니다.
+   - Array에 각 옵션을 객체로 가공하여 저장한 후에 `find()` 등을 활용하여 서브 필터링을 구현하였습니다.
 
 
 # 협업자료
